@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond</title>
+  <meta name="description" content="A levels x laws taxonomy for agentic world models: L1 Predictor, L2 Simulator, L3 Evolver across physical, digital, social, and scientific regimes.">
+</head>
+<body>
+
+<!-- Matrix rain -->
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Stage (hidden until intro completes; prevents flash of unstyled paper info) -->
+<div id="stage" class="flex flex-col" style="visibility:hidden;">
+
+  <!-- ═══ HERO: Tag + Title + Meta ═══ -->
+  <div id="tag" class="section-label mt-24 max-sm:mt-14 inline-block self-start rounded-lg px-4 py-2" style="color:var(--accent);background:var(--accent-bg);border:1px solid var(--border);">Preprint 2026</div>
+
+  <div id="title-wrap" class="relative mt-5"></div>
+
+  <!-- Authors -->
+  <div id="authors-block" class="mt-10"></div>
+
+  <div id="affil-block" class="mt-5"></div>
+
+  <div id="links-block" class="flex flex-wrap mt-10">
+    <a href="https://github.com/matrix-agent/awesome-agentic-world-modeling/blob/main/paper.pdf" class="link-btn link-primary inline-flex items-center justify-center gap-2 no-underline transition-all duration-200" style="background:var(--accent);border:1px solid var(--accent);color:#fff;">
+      <svg class="w-[16px] h-[16px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Paper
+    </a>
+    <a href="https://github.com/matrix-agent/awesome-agentic-world-modeling" class="link-btn inline-flex items-center justify-center gap-2 no-underline transition-all duration-200" style="border:1px solid var(--border);background:var(--surface);color:var(--text-sec);font-family:var(--sans);">
+      <svg class="w-[16px] h-[16px]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      Code
+    </a>
+    <a href="#cite-box" class="link-btn inline-flex items-center justify-center gap-2 no-underline transition-all duration-200" style="border:1px solid var(--border);background:var(--surface);color:var(--text-sec);font-family:var(--sans);">
+      <svg class="w-[16px] h-[16px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      Cite
+    </a>
+  </div>
+
+  <!-- ═══ DIVIDER ═══ -->
+  <div id="div1" class="mt-20 h-px" style="background:var(--border);"></div>
+
+  <!-- ═══ ABSTRACT ═══ -->
+  <div id="abstract-label" class="section-label mt-20 flex items-center gap-3">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Abstract
+  </div>
+  <div id="abstract-wrap" class="relative mt-6">
+    <span id="cursor" class="cursor-blink" style="display:none;"></span>
+  </div>
+
+  <div id="div2" class="mt-20 h-px" style="background:var(--border);"></div>
+
+  <!-- ═══ STATS ═══ -->
+  <div id="stats-label" class="section-label mt-20 flex items-center gap-3">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    At a Glance
+  </div>
+  <div id="stats-grid" class="mt-8 w-full" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;"></div>
+
+  <div id="div3" class="mt-20 h-px" style="background:var(--border);"></div>
+
+  <!-- ═══ TAXONOMY ═══ -->
+  <div id="tax-label" class="section-label mt-20 flex items-center gap-3">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+    Taxonomy
+  </div>
+  <h2 id="tax-title" class="section-heading mt-6">Capability Levels</h2>
+
+  <div id="levels-container" class="mt-6 flex flex-col w-full"></div>
+
+  <div id="div4" class="mt-20 h-px" style="background:var(--border);"></div>
+
+  <!-- ═══ REGIMES ═══ -->
+  <div id="reg-label" class="section-label mt-20 flex items-center gap-3">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Governing Laws
+  </div>
+  <h2 id="reg-title" class="section-heading mt-6">Four Regimes</h2>
+
+  <div id="reg-grid" class="mt-6 w-full" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"></div>
+
+  <div id="div5" class="mt-20 h-px" style="background:var(--border);"></div>
+
+  <!-- ═══ CITATION ═══ -->
+  <div id="cite-label" class="section-label mt-20 flex items-center gap-3">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    Citation
+  </div>
+  <div id="cite-box" class="cite-box reveal mt-8">
+    <button class="copy-btn">Copy</button>
+    <pre id="bibtex-content"></pre>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer" class="mt-20 text-center py-6 pb-16" style="font-family:var(--sans);color:var(--text-dim);font-size:var(--fs-mono-sm);">
+    <p>Powered by <a href="https://vite.dev/" class="no-underline hover:underline" style="color:var(--accent);">Vite</a></p>
+  </footer>
+
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+
+<!-- Visitor tracker (invisible). Wrapper hides any widget the script inserts. -->
+<div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:0;height:0;overflow:hidden;pointer-events:none;">
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=ODW4IUN2h8kgE8uwKiummgtUlmzqHO_K69IWWiJIRxQ&cl=ffffff&w=a"></script>
+</div>
+</body>
+</html>

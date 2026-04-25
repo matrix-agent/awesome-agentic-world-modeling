@@ -1,0 +1,730 @@
+@import "tailwindcss";
+
+/* ── Theme tokens (CSS variables — needed for data-theme + prefers-color-scheme toggle) ── */
+:root {
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', 'Menlo', monospace;
+  --r: 14px;
+  --max-w: 960px;
+
+  /* ── Coherent type scale ── */
+  --fs-display: clamp(30px, 4.8vw, 46px);
+  --fs-section-heading: clamp(26px, 3vw, 34px);
+  --fs-card-title: clamp(21px, 2vw, 24px);
+  --fs-stat: clamp(36px, 4vw, 48px);
+  --fs-body: clamp(18px, 1.7vw, 20px);
+  --fs-meta: clamp(17px, 1.55vw, 18px);
+  --fs-label: clamp(15px, 1.4vw, 17px);
+  --fs-mono-sm: 15px;
+  --fs-mono-xs: 14px;
+
+  /* ── Spacing scale ── */
+  --gap-author: 16px;
+  --gap-affil: 24px;
+  --gap-button: 18px;
+}
+
+:root, [data-theme="light"] {
+  --bg: #fafaf8; --surface: #fff; --surface-hover: #f5f4f2;
+  --border: #e2e0db; --border-hover: #ccc9c3;
+  --text: #1a1816; --text-sec: #555049; --text-dim: #8a847c;
+  --accent: #4a6cf7; --accent-hover: #3955d4; --accent-bg: rgba(74,108,247,0.06);
+  --green: #1a9a40; --green-bg: rgba(26,154,64,0.06); --green-glow: rgba(42,110,63,0.3);
+  --intro-rain: 0.06; --intro-scanline: rgba(0,0,0,0.006);
+  --input-bar-bg: rgba(255,255,255,0.5); --bubble-border: rgba(42,110,63,0.08);
+  --l1: #2d8a4e; --l2: #4a5ec0; --l3: #c45a28;
+  --l1-bg: rgba(45,138,78,0.07); --l2-bg: rgba(74,94,192,0.07); --l3-bg: rgba(196,90,40,0.07);
+  --shadow: 0 2px 12px rgba(0,0,0,0.06); --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  --matrix-opacity: 1;
+}
+
+[data-theme="dark"] {
+  --bg: #0c0c11; --surface: rgba(255,255,255,0.04); --surface-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #eae8e4; --text-sec: #a09a92; --text-dim: #5f5a54;
+  --accent: #7b9bff; --accent-hover: #99b2ff; --accent-bg: rgba(123,155,255,0.08);
+  --green: #00ff41; --green-bg: rgba(0,255,65,0.06); --green-glow: rgba(0,255,65,0.4);
+  --intro-rain: 0.15; --intro-scanline: rgba(0,255,65,0.012);
+  --input-bar-bg: rgba(0,0,0,0.5); --bubble-border: rgba(0,255,65,0.1);
+  --l1: #4aad6a; --l2: #7081e0; --l3: #d47a52;
+  --l1-bg: rgba(74,173,106,0.1); --l2-bg: rgba(112,129,224,0.1); --l3-bg: rgba(212,122,82,0.1);
+  --shadow: 0 2px 12px rgba(0,0,0,0.3); --shadow-lg: 0 8px 30px rgba(0,0,0,0.4);
+  --matrix-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c0c11; --surface: rgba(255,255,255,0.04); --surface-hover: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+    --text: #eae8e4; --text-sec: #a09a92; --text-dim: #5f5a54;
+    --accent: #7b9bff; --accent-hover: #99b2ff; --accent-bg: rgba(123,155,255,0.08);
+    --green: #00ff41; --green-bg: rgba(0,255,65,0.06); --green-glow: rgba(0,255,65,0.4);
+    --intro-rain: 0.15; --intro-scanline: rgba(0,255,65,0.012);
+    --input-bar-bg: rgba(0,0,0,0.5); --bubble-border: rgba(0,255,65,0.1);
+    --l1: #4aad6a; --l2: #7081e0; --l3: #d47a52;
+    --l1-bg: rgba(74,173,106,0.1); --l2-bg: rgba(112,129,224,0.1); --l3-bg: rgba(212,122,82,0.1);
+    --shadow: 0 2px 12px rgba(0,0,0,0.3); --shadow-lg: 0 8px 30px rgba(0,0,0,0.4);
+    --matrix-opacity: 1;
+  }
+}
+
+/* ── Intro overlay theme-reactive classes (bypasses Rolldown stripping CSS vars from JS) ── */
+.intro-text { color: var(--green) !important; text-shadow: 0 0 6px var(--green-glow) !important; }
+.intro-text-dim { color: var(--text-dim) !important; }
+.intro-text-sec { color: var(--text-sec) !important; }
+.intro-text-body { color: var(--text) !important; }
+.intro-text-accent { color: var(--accent) !important; }
+.intro-text-warn { color: var(--l3) !important; }
+.intro-bg { background: var(--bg) !important; }
+.intro-surface { background: var(--surface) !important; }
+.intro-border { border-color: var(--border) !important; }
+.intro-btn-mode {
+  border: 1px solid var(--border) !important;
+  background: var(--green-bg) !important;
+  color: var(--green) !important;
+  text-shadow: 0 0 6px var(--green-glow) !important;
+}
+.intro-btn-mode:hover {
+  background: var(--surface-hover) !important;
+  border-color: var(--green) !important;
+  box-shadow: 0 0 24px var(--green-glow) !important;
+}
+.intro-input-bar {
+  background: var(--input-bar-bg) !important;
+  border-top: 1px solid var(--border) !important;
+}
+.intro-input {
+  color: var(--green) !important;
+  background: var(--green-bg) !important;
+  border: 1px solid var(--border) !important;
+  caret-color: var(--green) !important;
+}
+.intro-input:focus {
+  border-color: var(--green) !important;
+  box-shadow: 0 0 16px var(--green-glow) !important;
+}
+.intro-bubble {
+  background: var(--green-bg) !important;
+  border: 1px solid var(--border) !important;
+}
+.intro-bubble-neo {
+  background: var(--accent-bg) !important;
+  border: 1px solid var(--border) !important;
+}
+.intro-disclaimer {
+  color: var(--text-dim) !important;
+  background: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+}
+.intro-rain { opacity: var(--intro-rain) !important; }
+.intro-scanline {
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--intro-scanline) 2px, var(--intro-scanline) 4px) !important;
+}
+
+/* ── Null Pointer trailer intro ── */
+.intro-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  opacity: 1;
+  transition: opacity 520ms ease;
+}
+
+.intro-shell.intro-exit { opacity: 0; }
+
+.intro-rain-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+}
+
+.intro-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.intro-scene-host {
+  position: absolute;
+  inset: 0;
+}
+
+.intro-scene {
+  position: absolute;
+  inset: 0;
+}
+
+.intro-terminal-panel {
+  position: absolute;
+  inset: 0;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 1.55;
+  overflow: hidden;
+}
+
+.intro-line {
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.intro-hidden { visibility: hidden; }
+
+.intro-pretext-line {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.intro-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  vertical-align: text-bottom;
+  transform: translateY(-0.12em);
+}
+
+.intro-quote {
+  text-align: center;
+}
+
+.intro-quote-line {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.intro-quote-rule {
+  position: absolute;
+  height: 1px;
+}
+
+.intro-skip {
+  position: absolute;
+  left: max(22px, env(safe-area-inset-left));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  z-index: 2;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--intro-skip-gap, 8px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(240,238,232,0.7);
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: var(--intro-skip-font-size, 11px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 240ms ease, color 200ms;
+}
+
+.intro-skip-icon {
+  width: var(--intro-skip-icon-size, 14px);
+  height: var(--intro-skip-icon-size, 14px);
+  flex: 0 0 auto;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.intro-skip-label {
+  font-size: 1em;
+  line-height: 1;
+}
+
+.intro-skip:hover {
+  color: #fff;
+}
+
+[data-theme="light"] .intro-skip {
+  color: rgba(26,24,20,0.65);
+}
+
+[data-theme="light"] .intro-skip:hover {
+  color: #1a1814;
+}
+
+/* ── Reset (Tailwind preflight handles box-sizing/margin/padding — only add overrides here) ── */
+html { scroll-behavior: smooth; line-height: 1.15; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Override Tailwind preflight font resets for pretext spans */
+.pt-body { font-family: var(--mono) !important; }
+
+/* ── Matrix background ── */
+#matrix-canvas {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh;
+  z-index: 0; pointer-events: none;
+  opacity: var(--matrix-opacity);
+  transition: opacity 0.5s;
+}
+
+/* ── Stage ── */
+#stage {
+  position: relative; z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto; padding: 0 32px;
+}
+
+/* ── Pretext spans (set by syncSpans className) ── */
+.pt-body {
+  position: absolute !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* ── Hero title ── */
+#title-wrap {
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--fs-display);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.paper-title-main,
+.paper-title-middle,
+.paper-title-end {
+  white-space: nowrap;
+}
+
+/* On narrow viewports the title pieces are wider than the column;
+   allow them to wrap so they don't push the page into horizontal scroll. */
+@media (max-width: 480px) {
+  .paper-title-main,
+  .paper-title-middle,
+  .paper-title-end {
+    white-space: normal;
+  }
+}
+
+.paper-title-break {
+  display: block;
+}
+
+.paper-title-break-mobile {
+  display: none;
+}
+
+/* ── Authors ── */
+#authors-block {
+  font-family: var(--sans);
+  color: var(--text);
+  text-align: left;
+  font-size: var(--fs-body);
+  line-height: 2.05;
+}
+
+#authors-block sup {
+  color: var(--accent);
+  font-size: 0.7em;
+  font-weight: 500;
+  margin-left: 1px;
+  vertical-align: 0.5em;
+  line-height: 0;
+  letter-spacing: 0.01em;
+}
+
+.author-entry {
+  display: inline-block;
+  margin-right: var(--gap-author);
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+/* Keep the last two authors together so the final entry never wraps alone */
+.author-pair {
+  display: inline-block;
+  white-space: nowrap;
+}
+.author-pair .author-entry:last-child {
+  margin-right: 0;
+}
+
+
+
+/* ── Author role legend (Core / Project Lead / Senior) ── */
+.author-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
+  color: var(--text-dim);
+  font-family: var(--sans);
+  font-size: var(--fs-meta);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.author-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.legend-symbol {
+  color: var(--accent);
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ── Affiliations (uses full available width with comfortable line spacing) ── */
+#affil-block {
+  font-family: var(--sans);
+  color: var(--text-sec);
+  text-align: left;
+  font-size: var(--fs-meta);
+  line-height: 2.1;
+}
+
+.affiliation-entry {
+  display: inline-block;
+  margin-right: var(--gap-affil);
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+#affil-block sup {
+  color: var(--accent);
+  font-size: 0.85em;
+  font-weight: 500;
+  margin-right: 4px;
+  vertical-align: 0.4em;
+  line-height: 0;
+}
+
+/* ── Paper / Code / Cite buttons ── */
+#links-block {
+  column-gap: var(--gap-button) !important;
+  row-gap: 12px !important;
+}
+
+.link-btn {
+  font-size: var(--fs-meta) !important;
+  padding: 12px 22px !important;
+  border-radius: 12px !important;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* ── Keyframes ── */
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes arrow-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+/* ── Cursor blink ── */
+.cursor-blink {
+  display: inline-block; width: 9px; height: 18px;
+  background: var(--green); vertical-align: text-bottom;
+  animation: blink 1s step-end infinite; opacity: 0.8;
+}
+
+/* ── Card (used by JS selectors + hover) ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.card.active { border-color: var(--accent); background: var(--accent-bg); }
+
+.level-card {
+  appearance: none;
+  display: block;
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.level-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.author-project-lead-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.08em;
+}
+
+.legend-project-lead-icon {
+  flex: 0 0 auto;
+  width: 1.05em;
+  height: 1.05em;
+  color: var(--accent);
+}
+
+/* ── Section labels (small caps headings above each block) ── */
+.section-label {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── Section h2 headings (e.g. "Capability Levels") ── */
+.section-heading {
+  font-family: var(--sans);
+  font-size: var(--fs-section-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ── Card title + body inside cards (level / regime / stat) ── */
+.card-title {
+  font-family: var(--sans);
+  font-size: var(--fs-card-title);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.card-body {
+  font-size: var(--fs-body);
+  color: var(--text-sec);
+  line-height: 1.65;
+}
+
+.stat-n {
+  font-family: var(--sans);
+  font-size: var(--fs-stat);
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: var(--fs-meta);
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.level-tag {
+  font-family: var(--mono);
+  font-size: var(--fs-mono-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.regime-icon {
+  color: var(--accent);
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+/* ── Chip (used by JS click handler) ── */
+.chip {
+  font-family: var(--mono);
+  font-size: var(--fs-mono-sm);
+  padding: 4px 12px;
+  background: var(--accent-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-sec);
+  display: inline-block;
+  transition: all 0.15s;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+.level-transition {
+  --level-transition-color: var(--accent);
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+}
+
+.level-transition-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--level-transition-color));
+  opacity: 0.48;
+}
+
+.level-transition-line:last-child {
+  background: linear-gradient(90deg, var(--level-transition-color), transparent);
+}
+
+.level-transition-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-sec);
+  box-shadow: var(--shadow);
+}
+
+.level-transition-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--level-transition-color);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.level-transition-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* ── Citation ── */
+.cite-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px; position: relative;
+}
+.cite-box pre {
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-sec);
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: break-word;
+  margin: 0;
+}
+.copy-btn {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--surface-hover); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: var(--fs-mono-xs);
+  color: var(--text-dim); cursor: pointer; transition: all 0.15s;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Reveal animation ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .author-entry { margin-right: 14px; }
+  .affiliation-entry { margin-right: 18px; }
+  .author-legend { gap: 6px 18px; }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --fs-display: clamp(30px, 8.4vw, 38px);
+    --fs-section-heading: clamp(24px, 5.4vw, 28px);
+    --fs-card-title: 21px;
+    --fs-stat: clamp(32px, 9vw, 38px);
+    --fs-body: 18px;
+    --fs-meta: 17px;
+    --fs-label: 15px;
+    --gap-author: 8px;
+    --gap-affil: 16px;
+    --gap-button: 14px;
+  }
+  #stage { padding: 0 20px; }
+  #title-wrap {
+    line-height: 1.14;
+  }
+  .paper-title-break-mobile {
+    display: block;
+  }
+  .paper-title-middle,
+  .paper-title-end {
+    display: inline-block;
+  }
+  #authors-block {
+    line-height: 1.95;
+  }
+  #affil-block {
+    line-height: 2;
+  }
+  .affiliation-entry {
+    display: inline;
+    white-space: normal;
+  }
+  #affil-block sup {
+    margin-right: 2px;
+  }
+  .author-legend {
+    gap: 6px 14px;
+  }
+  .link-btn {
+    padding: 11px 18px !important;
+    border-radius: 10px !important;
+  }
+  #stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  #reg-grid { grid-template-columns: 1fr !important; }
+  .card { padding: 22px; }
+}
+
+@media (max-width: 480px) {
+  :root { --gap-author: 6px; }
+  #authors-block { font-size: 17px; line-height: 1.85; }
+  .author-entry { margin-right: 6px; }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --fs-display: 30px;
+    --fs-body: 17px;
+    --fs-meta: 16px;
+    --fs-stat: 32px;
+  }
+  #stage { padding: 0 16px; }
+  #affil-block { line-height: 1.95; }
+  .card { padding: 18px; }
+}

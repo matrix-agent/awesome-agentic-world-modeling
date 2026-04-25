@@ -1,0 +1,28 @@
+{
+  "name": "agentic-world-models-page",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test:responsive": "node scripts/capture-responsive.mjs",
+    "test:intro": "node scripts/capture-intro.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "playwright": "^1.59.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.5"
+  },
+  "dependencies": {
+    "@chenglou/pretext": "^0.0.4",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/instrument-sans": "^5.2.8",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fortawesome/fontawesome-free": "^7.2.0"
+  }
+}

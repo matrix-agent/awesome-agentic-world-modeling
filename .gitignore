@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+src/*.js
+
+# Test screenshots (capture scripts in scripts/)
+screenshots
+
+# IDE / Editor
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*
+
+# Temp / test artifacts
+tmp
+*.log
+
+# Superpowers
+.superpowers
+.omx/
+.omc/
