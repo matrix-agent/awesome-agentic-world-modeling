@@ -59,6 +59,26 @@ const SECTION_CONFIG = {
     parent: '## L3: Evolver',
     heading: '### Scientific World',
   },
+  'benchmark-physical': {
+    label: 'Benchmark-Physical',
+    parent: '## Benchmarks & Evaluation',
+    heading: '### Physical',
+  },
+  'benchmark-digital': {
+    label: 'Benchmark-Digital',
+    parent: '## Benchmarks & Evaluation',
+    heading: '### Digital',
+  },
+  'benchmark-social': {
+    label: 'Benchmark-Social',
+    parent: '## Benchmarks & Evaluation',
+    heading: '### Social',
+  },
+  'benchmark-scientific': {
+    label: 'Benchmark-Scientific',
+    parent: '## Benchmarks & Evaluation',
+    heading: '### Scientific',
+  },
 };
 
 const SECTION_ALIASES = {
@@ -80,6 +100,22 @@ const SECTION_ALIASES = {
   'l3-digital': 'l3-digital',
   'l3-social': 'l3-social',
   'l3-scientific': 'l3-scientific',
+  'benchmark-physical': 'benchmark-physical',
+  'benchmark-digital': 'benchmark-digital',
+  'benchmark-social': 'benchmark-social',
+  'benchmark-scientific': 'benchmark-scientific',
+  'benchmarks-physical': 'benchmark-physical',
+  'benchmarks-digital': 'benchmark-digital',
+  'benchmarks-social': 'benchmark-social',
+  'benchmarks-scientific': 'benchmark-scientific',
+  'bench-physical': 'benchmark-physical',
+  'bench-digital': 'benchmark-digital',
+  'bench-social': 'benchmark-social',
+  'bench-scientific': 'benchmark-scientific',
+  'eval-physical': 'benchmark-physical',
+  'eval-digital': 'benchmark-digital',
+  'eval-social': 'benchmark-social',
+  'eval-scientific': 'benchmark-scientific',
 };
 
 function normalizeSection(value) {
@@ -247,14 +283,18 @@ function normalizeSubmission(raw, fallbackSection) {
   const rawPaperUrl = raw.paper_url || raw.arxiv_url || raw.url || '';
   const arxivId = extractArxivId(raw.arxiv_id) || extractArxivId(rawPaperUrl);
   const paperUrl = arxivId ? canonicalArxivUrl(arxivId) : rawPaperUrl;
+  const sectionRaw = raw.section || raw.target_section || '';
+  const subsectionRaw = raw.subsection || raw.sub_section || raw.sub || '';
+  const combinedSection = subsectionRaw ? `${sectionRaw}-${subsectionRaw}` : sectionRaw;
   return {
-    section: normalizeSection(raw.section || raw.target_section) || fallbackSection || null,
+    section: normalizeSection(combinedSection) || fallbackSection || null,
     title: normalizeWhitespace(raw.title || ''),
     paper_url: normalizeUrl(paperUrl),
     venue: normalizeWhitespace(raw.venue || (arxivId ? 'arXiv' : '')),
     year: raw.year ? Number(raw.year) : undefined,
     summary: normalizeWhitespace(raw.summary || raw.description || ''),
     code_url: normalizeUrl(raw.code_url || raw.github_url || raw.code || ''),
+    homepage_url: normalizeUrl(raw.homepage_url || raw.website_url || raw.project_url || raw.homepage || raw.website || ''),
     arxiv_id: arxivId,
   };
 }
@@ -312,6 +352,10 @@ function ensureValidSubmission(item) {
     const codeUrlError = validateUrl(item.code_url, 'code_url');
     if (codeUrlError) errors.push(codeUrlError);
   }
+  if (item.homepage_url) {
+    const homepageUrlError = validateUrl(item.homepage_url, 'homepage_url');
+    if (homepageUrlError) errors.push(homepageUrlError);
+  }
   if (!item.title) errors.push(`Missing title for ${item.paper_url || 'submission'}.`);
   if (!item.year || Number.isNaN(item.year)) errors.push(`Missing numeric year for ${item.title || item.paper_url}.`);
   if (!item.venue) errors.push(`Missing venue for ${item.title || item.paper_url}.`);
@@ -327,11 +371,27 @@ function escapeMarkdownText(value) {
     .replace(/([\\`*_{}\[\]()#|])/g, '\\$1');
 }
 
+function renderCodeBadge(codeUrl) {
+  if (!codeUrl) return '';
+  const match = String(codeUrl).match(/^https?:\/\/github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+)/);
+  if (match) {
+    const slug = `${match[1]}/${match[2]}`;
+    return ` [![Stars](https://img.shields.io/github/stars/${slug}?style=flat&logo=github&color=181717)](${codeUrl})`;
+  }
+  return ` [![Code](https://img.shields.io/badge/Code-Link-181717?logo=github)](${codeUrl})`;
+}
+
+function renderHomepageBadge(homepageUrl) {
+  if (!homepageUrl) return '';
+  return ` [![Homepage](https://img.shields.io/badge/Homepage-Online-1f6feb?logo=googlechrome&logoColor=white)](${homepageUrl})`;
+}
+
 function renderEntry(item) {
   const summaryText = normalizeWhitespace(item.summary);
   const summary = summaryText.endsWith('.') ? summaryText : `${summaryText}.`;
-  const code = item.code_url ? ` [[Code]](${item.code_url})` : '';
-  return `+ [**${escapeMarkdownText(item.title)}**](${item.paper_url}) (${escapeMarkdownText(item.venue)}, ${item.year}) \u2014 ${escapeMarkdownText(summary)}${code}`;
+  const code = renderCodeBadge(item.code_url);
+  const homepage = renderHomepageBadge(item.homepage_url);
+  return `+ [**${escapeMarkdownText(item.title)}**](${item.paper_url}) (${escapeMarkdownText(item.venue)}, ${item.year}) \u2014 ${escapeMarkdownText(summary)}${code}${homepage}`;
 }
 
 function parseYearFromEntry(line) {

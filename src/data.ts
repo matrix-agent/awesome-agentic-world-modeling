@@ -1,7 +1,7 @@
 export const PAPER_TITLE = 'Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond'
 export const SITE_URL = 'https://agentic-world-modeling.xyz'
 export const REPOSITORY_URL = 'https://github.com/matrix-agent/awesome-agentic-world-modeling'
-export const PAPER_URL = `${REPOSITORY_URL}/blob/main/paper.pdf`
+export const PAPER_URL = 'https://arxiv.org/abs/2604.22748'
 
 export const ABSTRACT = `As AI systems move from generating text to accomplishing goals through sustained interaction, the ability to model environment dynamics becomes a central bottleneck. Agents that manipulate objects, navigate software, coordinate with others, or design experiments require predictive environment models, yet the term "world model" carries different meanings across research communities. We introduce a "levels \u00d7 laws" taxonomy organized along two axes. The first defines three capability levels: L1 Predictor, which learns one-step local transition operators; L2 Simulator, which composes them into multi-step, action-conditioned rollouts that respect domain laws; and L3 Evolver, which autonomously revises its own model when predictions fail against new evidence.
 
@@ -114,12 +114,14 @@ export const REGIMES = [
   { icon: 'fa-solid fa-flask', title: 'Scientific World', desc: 'Conservation laws, PDE constraints, experimental falsifiability. Neural surrogates must respect invariants.' },
 ]
 
-export const BIBTEX = `@misc{chu2026agentic,
-  title = {Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond},
-  author = {Chu, Meng and Zhang, Xuan Billy and Lin, Kevin Qinghong and Kong, Lingdong and Zhang, Jize and Tu, Teng and Ma, Weijian and Huang, Ziqi and Yang, Senqiao and Huang, Wei and Jin, Yeying and Rao, Zhefan and Ye, Jinhui and Lin, Xinyu and Zhang, Xichen and Hu, Qisheng and Yang, Shuai and Shen, Leyang and Chow, Wei and Dong, Yifei and Wu, Fengyi and Long, Quanyu and Xia, Bin and Yu, Shaozuo and Zhu, Mingkang and Zhang, Wenhu and Huang, Jiehui and Gui, Haokun and Che, Haoxuan and Chen, Long and Chen, Qifeng and Zhang, Wenxuan and Wang, Wenya and Qi, Xiaojuan and Deng, Yang and Li, Yanwei and Shou, Mike Zheng and Cheng, Zhi-Qi and Ng, See-Kiong and Liu, Ziwei and Torr, Philip and Jia, Jiaya},
-  year = {2026},
-  howpublished = {\\url{https://github.com/matrix-agent/awesome-agentic-world-modeling}},
-  note = {GitHub repository}
+export const BIBTEX = `@article{chu2026agenticworldmodelingfoundations,
+  title         = {Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond},
+  author        = {Meng Chu and Xuan Billy Zhang and Kevin Qinghong Lin and Lingdong Kong and Jize Zhang and Teng Tu and Weijian Ma and Ziqi Huang and Senqiao Yang and Wei Huang and Yeying Jin and Zhefan Rao and Jinhui Ye and Xinyu Lin and Xichen Zhang and Qisheng Hu and Shuai Yang and Leyang Shen and Wei Chow and Yifei Dong and Fengyi Wu and Quanyu Long and Bin Xia and Shaozuo Yu and Mingkang Zhu and Wenhu Zhang and Jiehui Huang and Haokun Gui and Haoxuan Che and Long Chen and Qifeng Chen and Wenxuan Zhang and Wenya Wang and Xiaojuan Qi and Yang Deng and Yanwei Li and Mike Zheng Shou and Zhi-Qi Cheng and See-Kiong Ng and Ziwei Liu and Philip Torr and Jiaya Jia},
+  year          = {2026},
+  eprint        = {2604.22748},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2604.22748}
 }`
 
 export const MATRIX_WORDS = [

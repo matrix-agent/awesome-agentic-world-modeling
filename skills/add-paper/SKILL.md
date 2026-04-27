@@ -1,20 +1,21 @@
 ---
 name: add-paper
-description: Generate an issue body for adding a paper to awesome-agentic-world-models through the Awesome Paper Agent GitHub Action. Use when a user or AI agent wants to add a paper by opening an issue that will be parsed into a README pull request.
+description: Generate an issue body for adding a paper or benchmark to awesome-agentic-world-modeling through the Awesome Paper Agent GitHub Action. Use when a user or AI agent wants to add a paper or benchmark by opening an issue that will be parsed into a README pull request.
 ---
 
-# Add Paper
+# Add Paper or Benchmark
 
-Create a GitHub issue body that the repository's `Awesome Paper Agent` workflow can parse into a README pull request.
+Create a GitHub issue body that the repository's `Awesome Paper Agent` workflow can parse into a README pull request. The same `awwm-paper` block format is used for both research papers (sections L1/L2/L3) and benchmarks (section `Benchmark`) — only the `section` and `subsection` values differ.
 
 ## Output Contract
 
-Generate exactly one fenced `awwm-paper` block per paper:
+Generate exactly one fenced `awwm-paper` block per paper. Place each entry by **section** (top-level) and **subsection** (nested):
 
 ````
 ```awwm-paper
 {
-  "section": "L2-Digital",
+  "section": "L2",
+  "subsection": "Digital",
   "title": "Paper title",
   "paper_url": "https://arxiv.org/abs/2601.00001",
   "venue": "arXiv",
@@ -25,13 +26,35 @@ Generate exactly one fenced `awwm-paper` block per paper:
 ```
 ````
 
-Minimum arXiv payload fields: `section` and `paper_url`, assuming the workflow can fetch arXiv metadata.
+Minimum arXiv payload fields: `section`, `subsection`, and `paper_url`, assuming the workflow can fetch arXiv metadata.
 
 For deterministic submissions, include `title`, `venue`, `year`, and `summary`. Non-arXiv papers must include those fields because the workflow cannot hydrate them from arXiv.
 
-Optional field: `code_url`.
+Optional fields: `code_url`, `homepage_url`.
 
 URLs must use `http` or `https` and must not contain whitespace, control characters, or Markdown delimiter characters such as brackets or parentheses.
+
+Provide `code_url` as a bare URL (e.g. `https://github.com/org/repo`). When the URL is on `github.com`, the renderer wraps it in a shields.io live GitHub-stars badge for that specific repo (`Stars` label, GitHub-black, with logo); other code hosts fall back to a generic Code badge. Provide `homepage_url` as a bare URL for the project page (e.g. `https://project-name.github.io/`); the renderer adds a Homepage badge after the code badge. Do not embed badge Markdown yourself.
+
+For a benchmark submission, set `section` to `Benchmark` (benchmarks often ship a project homepage too):
+
+````
+```awwm-paper
+{
+  "section": "Benchmark",
+  "subsection": "Digital",
+  "title": "Benchmark name",
+  "paper_url": "https://arxiv.org/abs/2601.00002",
+  "venue": "arXiv",
+  "year": 2026,
+  "summary": "Concise metric/scope phrase, e.g. 'Desktop OS task success rate.'",
+  "code_url": "https://github.com/org/benchmark",
+  "homepage_url": "https://benchmark-name.github.io/"
+}
+```
+````
+
+Backward compatibility: the workflow still accepts the legacy combined form `"section": "L2-Digital"` (with no `subsection`), but new submissions should use the split form.
 
 ## Two Orthogonal Axes
 
@@ -56,39 +79,58 @@ Which laws does the world model have to respect for its rollouts to be legitimat
 
 ### Composition rule
 
-- **L2 / L3 papers**: Section label is `{L2,L3}-{Physical,Digital,Social,Scientific}` — Axis 1 × Axis 2 directly.
-- **L1 papers**: There is no four-worlds split inside L1. Instead, L1 has its own *operator-family* sub-axis (Representation / Model-Based-RL / Token-Diffusion), reflecting how L1 papers are most naturally organised. Section label is `L1-{Representation,Model-Based-RL,Token-Diffusion}`.
+- **L2 / L3 papers**: `section` is `L2` or `L3`; `subsection` is one of `Physical`, `Digital`, `Social`, `Scientific` — Axis 1 × Axis 2 directly.
+- **L1 papers**: There is no four-worlds split inside L1. Instead, L1 has its own *operator-family* sub-axis. Set `section: "L1"` and `subsection` to one of `Representation`, `Model-Based-RL`, `Token-Diffusion`.
+- **Benchmarks**: Set `section: "Benchmark"` and `subsection` to one of `Physical`, `Digital`, `Social`, `Scientific` — same regime axis as L2/L3.
 
 For deeper context (cross-domain analysis tables, failure modes, evaluation principles), open [paper.pdf](https://github.com/matrix-agent/awesome-agentic-world-modeling/blob/main/paper.pdf) at the section reference next to each definition above.
 
-## Valid Sections
+## Valid Sections and Subsections
 
-Cross-reference of label, level definition, and regime. Place the paper where its main contribution sits.
+Place the paper or benchmark where its main contribution sits.
 
-- `L1-Representation` — L1 systems whose contribution is **state inference**: contrastive, predictive, masked-region, or self-distillation objectives that shape `z_t` for downstream control (CPC, SimCLR, MoCo, CURL, SPR, JEPA family, DINOv2, RSSM-style belief inference, β-VAE, VQ-VAE).
-- `L1-Model-Based-RL` — L1 systems whose contribution is **forward dynamics for planning/control**: latent transition models trained for value alignment, planning, or model-based RL (Dreamer family, MuZero, EfficientZero, TD-MPC/TD-MPC2, PETS, MBPO, PILCO, World Models, DeepMDP, E2C).
-- `L1-Token-Diffusion` — L1 systems whose contribution is a **tokenised, autoregressive, or diffusion-based** one-step transition operator (IRIS, Delta-IRIS, STORM, TransDreamer, DIAMOND, Latent Diffusion as the transition step).
-- `L2-Physical` — L2 simulators for physical worlds. Action-conditioned video/embodied generation, robotics rollout, geometry-/contact-aware simulators, autonomous-driving world models (Sora, Cosmos, Genie, GAIA-1/2, Vista, DreamerV3 as physical simulator, DriveDreamer, Lumiere, OccWorld, DIAMOND-as-Atari, PIN-WM, RoboScape, Aether, GameCraft).
-- `L2-Digital` — L2 simulators for digital worlds: web/GUI/OS/game/code state simulators that respect formal program semantics (WebDreamer, WMA, WebWorld, gWorld, MobileDreamer, GameNGen, GameFactory, NeuralOS, WorldCoder, CodeWM, Code2World, Word2World).
-- `L2-Social` — L2 simulators for social worlds: theory-of-mind models, multi-agent dialogue, negotiation, deception, and sandbox society simulators (Generative Agents, CICERO, Sotopia, Project Sid, OASIS, Werewolf, AvalonBench, Social Simulacra, BToM/ToMnet, AIvilization, MASim, PolicySim).
-- `L2-Scientific` — L2 simulators for scientific worlds: weather/climate, materials, chemistry/biology, fluids/PDEs, with neural surrogates that respect physical invariants (GraphCast, Pangu-Weather, GenCast, NeuralGCM, ClimaX, Aurora, FNO, GNS, ChemBO, P3BO, Lingshu-Cell).
-- `L3-Physical` — L3 evolvers in embodied settings. Diagnostic action selection, sim-to-real adaptation, persistent self-model updates from morphology change or contact-dynamics mismatch (Self-Modeling, AdaptSim).
-- `L3-Digital` — L3 evolvers using execution feedback and regression gates from code/web/UI environments to persistently revise the underlying generator or policy (FunSearch, AlphaEvolve, CodeIt, SWE-agent, AUI).
-- `L3-Social` — L3 evolvers that revise social/normative models from interaction evidence: evolved constitutions, governance rules, behavioural-drift tracking in multi-agent populations (Evolving Constitutions, AgentSociety).
-- `L3-Scientific` — L3 evolvers closing the design–execute–observe–reflect loop with real instrumentation: autonomous wet/computational labs, hypothesis-driven discovery agents (Robot Scientist, A-Lab, CAMEO, BacterAI, Yeast Cycles, SDL Lasers, AI Scientist, AI Scientist v2, Co-Scientist, MOOSE-Chem, MOOSE-Chem2, Biomni, BioLab, OriGene).
+### `L1` — Predictor
 
-Legacy `L1` is accepted by the workflow, but prefer one of the precise L1 section names.
+- `Representation` — L1 systems whose contribution is **state inference**: contrastive, predictive, masked-region, or self-distillation objectives that shape `z_t` for downstream control (CPC, SimCLR, MoCo, CURL, SPR, JEPA family, DINOv2, RSSM-style belief inference, β-VAE, VQ-VAE).
+- `Model-Based-RL` — L1 systems whose contribution is **forward dynamics for planning/control**: latent transition models trained for value alignment, planning, or model-based RL (Dreamer family, MuZero, EfficientZero, TD-MPC/TD-MPC2, PETS, MBPO, PILCO, World Models, DeepMDP, E2C).
+- `Token-Diffusion` — L1 systems whose contribution is a **tokenised, autoregressive, or diffusion-based** one-step transition operator (IRIS, Delta-IRIS, STORM, TransDreamer, DIAMOND, Latent Diffusion as the transition step).
 
-## How to Choose a Section
+### `L2` — Simulator
 
-1. **Identify the level.** What capability does the paper *demonstrate* (not just claim)?
-   - Reports next-step / one-step accuracy of a transition operator → **L1**.
-   - Evaluates multi-step rollouts under domain constraints (compounding error, intervention, constraint violation) → **L2**.
-   - Persistently updates the model from new evidence collected through deployment, with a validation gate → **L3**.
-2. **Identify the regime.** What constraints must legitimate transitions satisfy?
-   - Physical/contact/conservation → **Physical**. Formal program semantics → **Digital**. Beliefs/norms/institutions → **Social**. PDE/invariant/falsifiability → **Scientific**.
-3. **For L1, identify the operator family** (Representation / Model-Based-RL / Token-Diffusion).
-4. **One section per submission.** If the paper is genuinely cross-cutting, pick the most prominent contribution and note alternatives in the issue comment for maintainer review.
+- `Physical` — Action-conditioned video/embodied generation, robotics rollout, geometry-/contact-aware simulators, autonomous-driving world models (Sora, Cosmos, Genie, GAIA-1/2, Vista, DreamerV3 as physical simulator, DriveDreamer, Lumiere, OccWorld, DIAMOND-as-Atari, PIN-WM, RoboScape, Aether, GameCraft).
+- `Digital` — Web/GUI/OS/game/code state simulators that respect formal program semantics (WebDreamer, WMA, WebWorld, gWorld, MobileDreamer, GameNGen, GameFactory, NeuralOS, WorldCoder, CodeWM, Code2World, Word2World).
+- `Social` — Theory-of-mind models, multi-agent dialogue, negotiation, deception, and sandbox society simulators (Generative Agents, CICERO, Sotopia, Project Sid, OASIS, Werewolf, AvalonBench, Social Simulacra, BToM/ToMnet, AIvilization, MASim, PolicySim).
+- `Scientific` — Weather/climate, materials, chemistry/biology, fluids/PDEs, with neural surrogates that respect physical invariants (GraphCast, Pangu-Weather, GenCast, NeuralGCM, ClimaX, Aurora, FNO, GNS, ChemBO, P3BO, Lingshu-Cell).
+
+### `L3` — Evolver
+
+- `Physical` — Diagnostic action selection, sim-to-real adaptation, persistent self-model updates from morphology change or contact-dynamics mismatch (Self-Modeling, AdaptSim).
+- `Digital` — Execution feedback and regression gates from code/web/UI environments to persistently revise the underlying generator or policy (FunSearch, AlphaEvolve, CodeIt, SWE-agent, AUI).
+- `Social` — Revise social/normative models from interaction evidence: evolved constitutions, governance rules, behavioural-drift tracking in multi-agent populations (Evolving Constitutions, AgentSociety).
+- `Scientific` — Close the design–execute–observe–reflect loop with real instrumentation: autonomous wet/computational labs, hypothesis-driven discovery agents (Robot Scientist, A-Lab, CAMEO, BacterAI, Yeast Cycles, SDL Lasers, AI Scientist, AI Scientist v2, Co-Scientist, MOOSE-Chem, MOOSE-Chem2, Biomni, BioLab, OriGene).
+
+### `Benchmark` — Evaluation suites
+
+- `Physical` — Physical-world rollout/control quality: manipulation success, autonomous-driving detection/tracking, locomotion, sample-efficient RL on physical tasks (RoboCasa, CALVIN, Meta-World, nuScenes, Atari 100k).
+- `Digital` — Digital-world agents: web/GUI/OS/code task success, multi-file patch resolution (OSWorld, SWE-bench, WebArena).
+- `Social` — Social capability: theory-of-mind, false-belief, multi-agent dialogue/negotiation scoring (Sotopia, Hi-ToM, FANToM).
+- `Scientific` — Scientific discovery and structured-environment exploration: hypothesis accuracy, tech-tree completion, experiment success (DiscoveryBench, Minecraft / MCU, ScienceWorld).
+
+Legacy combined values like `L2-Digital` or `Benchmark-Digital` (in `section` with no `subsection`) are still accepted for backward compatibility, but prefer the split form. Section aliases `Benchmarks`, `Bench`, and `Eval` also resolve to `Benchmark`.
+
+## How to Choose Section and Subsection
+
+1. **Is the submission a benchmark or a method?**
+   - **Benchmark** — its main contribution is a *task suite, dataset, or evaluation protocol* used to score other systems → set `section: "Benchmark"` and skip steps 2 and 4; only pick the regime in step 3.
+   - **Method/system paper** — continue to step 2.
+2. **Identify the section (level).** What capability does the paper *demonstrate* (not just claim)?
+   - Reports next-step / one-step accuracy of a transition operator → `section: "L1"`.
+   - Evaluates multi-step rollouts under domain constraints (compounding error, intervention, constraint violation) → `section: "L2"`.
+   - Persistently updates the model from new evidence collected through deployment, with a validation gate → `section: "L3"`.
+3. **Identify the subsection (regime).** What constraints must legitimate transitions satisfy?
+   - Physical/contact/conservation → `subsection: "Physical"`. Formal program semantics → `subsection: "Digital"`. Beliefs/norms/institutions → `subsection: "Social"`. PDE/invariant/falsifiability → `subsection: "Scientific"`.
+4. **For L1, the subsection is an operator-family** (`Representation`, `Model-Based-RL`, or `Token-Diffusion`) instead of a regime.
+5. **One section/subsection pair per submission.** If the paper is genuinely cross-cutting, pick the most prominent contribution and note alternatives in the issue comment for maintainer review.
 
 ## Workflow
 
@@ -115,7 +157,8 @@ Please add this paper to the awesome list.
 
 ```awwm-paper
 {
-  "section": "L2-Digital",
+  "section": "L2",
+  "subsection": "Digital",
   "title": "Paper title",
   "paper_url": "https://arxiv.org/abs/2601.00001",
   "venue": "arXiv",
@@ -126,4 +169,4 @@ Please add this paper to the awesome list.
 ```
 ````
 
-If there is no code link, omit `code_url` rather than leaving it blank.
+If there is no code link, omit `code_url` rather than leaving it blank. The same template is used for benchmarks — set `section: "Benchmark"` instead.
