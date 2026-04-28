@@ -2,7 +2,7 @@
   <img src="public/banner.png" alt="Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond" width="100%"/>
 </p>
 
-# Awesome Agentic World Modeling [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![arXiv](https://img.shields.io/badge/arXiv-2604.22748-b31b1b)](https://arxiv.org/abs/2604.22748) [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-Paper-yellow)](https://huggingface.co/papers/2604.22748) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) <!-- omit in toc -->
+# Awesome Agentic World Modeling [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![arXiv](https://img.shields.io/badge/arXiv-2604.22748-b31b1b)](https://arxiv.org/abs/2604.22748) [![HF #1 Paper of the Day](https://img.shields.io/badge/%F0%9F%A4%97%20HF-%231%20Paper%20of%20the%20Day-FFD21E)](https://huggingface.co/papers/2604.22748) [![Website](https://img.shields.io/badge/Website-agentic--world--modeling.xyz-1f6feb?logo=googlechrome&logoColor=white)](https://agentic-world-modeling.xyz/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) <!-- omit in toc -->
 
 This repository accompanies the [**Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond**](https://arxiv.org/abs/2604.22748), providing a taxonomy-aligned bibliography of **400+** cited works and **100+** representative systems. Check out the poster [here](public/poster.png).
 
@@ -287,3 +287,7 @@ If you find this resource useful, please cite and [![Stars](https://img.shields.
   url           = {https://arxiv.org/abs/2604.22748}
 }
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=matrix-agent/awesome-agentic-world-modeling&type=Date)](https://www.star-history.com/#matrix-agent/awesome-agentic-world-modeling&Date)

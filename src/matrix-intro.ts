@@ -50,7 +50,13 @@ type TerminalMetrics = {
   maxWidth: number
 }
 
-const TRAILER_DURATION = 50.0
+const TRAILER_DURATION = 40.0
+// Internal scene/intensity constants are authored against a ~42s logical
+// timeline (after redundant beats were trimmed). TIME_SCALE compresses real
+// time so the trailer fits inside TRAILER_DURATION without rewriting every
+// individual `show:` value below.
+const LOGICAL_DURATION = 42.0
+const TIME_SCALE = LOGICAL_DURATION / TRAILER_DURATION
 const CARET = '\u2588'
 
 declare global {
@@ -97,24 +103,21 @@ const THEMES: Record<ThemeName, ThemeSpec> = {
 const ACT_1: TerminalLine[] = [
   { kind: 'typed', show: 0.0, text: 'opencode run "spin up a gym env and act for 1000 steps"', dur: 1.6 },
   { kind: 'line', show: 1.85, color: 'fgMuted', text: 'opencode v0.4.2  •  model: claude-sonnet-4  •  cwd: ~/research' },
-  { kind: 'line', show: 2.1, color: 'green', text: '[opencode] plan → start REPL, import gym, loop env.step' },
-  { kind: 'line', show: 2.5, color: 'fgMuted', text: '[opencode] $ python   (executing)' },
-  { kind: 'typed', show: 3.2, text: 'python', dur: 0.5 },
-  { kind: 'line', show: 3.9, color: 'fgMuted', text: 'Python 3.11.9 (main) [GCC 11.4.0] on linux' },
-  { kind: 'line', show: 4.1, color: 'fgMuted', text: 'Type "help", "copyright", "credits" or "license" for more information.' },
-  { kind: 'typed', show: 4.45, prompt: '>>> ', text: 'import gym', dur: 0.5 },
-  { kind: 'typed', show: 5.25, prompt: '>>> ', text: 'env = gym.make("Reality-v0")', dur: 1.15 },
-  { kind: 'typed', show: 6.7, prompt: '>>> ', text: 'obs, info = env.reset(seed=42)', dur: 0.95 },
-  { kind: 'typed', show: 7.9, prompt: '>>> ', text: 'for _ in range(1000):', dur: 0.75 },
-  { kind: 'typed', show: 8.85, prompt: '... ', text: '    action = agent.act(obs)', dur: 0.85 },
-  { kind: 'typed', show: 9.9, prompt: '... ', text: '    obs, r, term, trunc, info = env.step(action)', dur: 1.1 },
-  { kind: 'line', show: 11.25, color: 'prompt', text: '... ' },
-  { kind: 'line', show: 11.5, color: 'fgMuted', text: 'Traceback (most recent call last):' },
-  { kind: 'line', show: 11.65, color: 'fgMuted', text: '  File "<stdin>", line 3, in <module>' },
-  { kind: 'line', show: 11.8, color: 'fgMuted', text: '  File "agent/planner.py", line 47, in act' },
-  { kind: 'line', show: 11.95, color: 'fgMuted', text: '    rollout = self.world_model.simulate(obs, action)' },
-  { kind: 'line', show: 12.2, color: 'red', text: 'IndexError: no model of the world' },
-  { kind: 'line', show: 12.7, color: 'prompt', text: '>>> ' },
+  { kind: 'line', show: 2.15, color: 'green', text: '[opencode] launching python REPL…' },
+  { kind: 'line', show: 2.55, color: 'fgMuted', text: 'Python 3.11.9 (main) [GCC 11.4.0] on linux' },
+  { kind: 'typed', show: 2.85, prompt: '>>> ', text: 'import gym', dur: 0.5 },
+  { kind: 'typed', show: 3.65, prompt: '>>> ', text: 'env = gym.make("Reality-v0")', dur: 1.15 },
+  { kind: 'typed', show: 5.1, prompt: '>>> ', text: 'obs, info = env.reset(seed=42)', dur: 0.95 },
+  { kind: 'typed', show: 6.3, prompt: '>>> ', text: 'for _ in range(1000):', dur: 0.75 },
+  { kind: 'typed', show: 7.25, prompt: '... ', text: '    action = agent.act(obs)', dur: 0.85 },
+  { kind: 'typed', show: 8.3, prompt: '... ', text: '    obs, r, term, trunc, info = env.step(action)', dur: 1.1 },
+  { kind: 'line', show: 9.65, color: 'prompt', text: '... ' },
+  { kind: 'line', show: 9.9, color: 'fgMuted', text: 'Traceback (most recent call last):' },
+  { kind: 'line', show: 10.05, color: 'fgMuted', text: '  File "<stdin>", line 3, in <module>' },
+  { kind: 'line', show: 10.2, color: 'fgMuted', text: '  File "agent/planner.py", line 47, in act' },
+  { kind: 'line', show: 10.35, color: 'fgMuted', text: '    rollout = self.world_model.simulate(obs, action)' },
+  { kind: 'line', show: 10.6, color: 'red', text: 'IndexError: no model of the world' },
+  { kind: 'line', show: 11.1, color: 'prompt', text: '>>> ' },
 ]
 
 const ACT_2: TerminalLine[] = [
@@ -137,8 +140,7 @@ const ACT_2: TerminalLine[] = [
   { kind: 'line', show: 8.75, color: 'fgMuted', text: 'Auto-merging src/world_model.py' },
   { kind: 'line', show: 9.0, color: 'red', text: 'CONFLICT (content): Merge conflict in src/world_model.py' },
   { kind: 'line', show: 9.25, color: 'red', text: 'CONFLICT (semantic): six models, one reality' },
-  { kind: 'line', show: 9.55, color: 'fgMuted', text: 'Automatic merge failed; fix conflicts and then commit the result.' },
-  { kind: 'line', show: 10.0, color: 'prompt', text: '$ ' },
+  { kind: 'line', show: 9.55, color: 'prompt', text: '$ ' },
 ]
 
 const ACT_3: TerminalLine[] = [
@@ -168,10 +170,8 @@ const PUSH_SCENE: TerminalLine[] = [
   { kind: 'line', show: 3.75, text: ' ' },
   { kind: 'typed', show: 3.95, text: 'opencode run "audit the paper before submission"', dur: 1.6 },
   { kind: 'line', show: 5.7, color: 'fgMuted', text: '[opencode] reading paper.pdf  •  30 pages, 423 refs' },
-  { kind: 'line', show: 6.05, color: 'green', text: '[opencode] ✓ taxonomy verified: 3 capability levels × 4 governing-law regimes' },
-  { kind: 'line', show: 6.4, color: 'green', text: '[opencode] ✓ 400+ cited works, 100+ representative systems indexed' },
-  { kind: 'line', show: 6.75, color: 'green', text: '[opencode] ✓ no broken citations, README in sync, ready to submit' },
-  { kind: 'line', show: 7.15, color: 'prompt', text: '$ ' },
+  { kind: 'line', show: 6.05, color: 'green', text: '[opencode] ✓ no broken citations, README in sync, ready to submit' },
+  { kind: 'line', show: 6.45, color: 'prompt', text: '$ ' },
 ]
 
 function makeEl<K extends keyof HTMLElementTagNameMap>(
@@ -443,7 +443,7 @@ function getTerminalPadY(layout: StageLayout): number {
 
 function intensityAt(t: number): number {
   return interpolate(
-    [0, 1.0, 11.5, 12.2, 17.6, 17.9, 28.2, 28.9, 34.3, 34.5, 42.5, 43.1, 48.0],
+    [0, 1.0, 9.7, 10.5, 14.4, 14.7, 23.5, 24.1, 27.3, 27.5, 35.4, 36.0, 41.0],
     [0.0, 0.12, 0.28, 0.85, 0.85, 0.25, 0.32, 0.88, 0.88, 0.3, 0.32, 0.55, 0.55],
     t,
   )
@@ -537,9 +537,10 @@ function startWatchMode(
       lastLayoutKey = layoutKey
     }
     overlay.style.background = theme.bg
-    matrix.draw(t, theme, layout)
+    const logicalT = t * TIME_SCALE
+    matrix.draw(logicalT, theme, layout)
 
-    const rendered = renderScene(t, theme, layout)
+    const rendered = renderScene(logicalT, theme, layout)
     if (rendered !== lastRendered) {
       sceneHost.innerHTML = rendered
       lastRendered = rendered
@@ -560,14 +561,15 @@ function startWatchMode(
 }
 
 function renderScene(t: number, theme: ThemeSpec, layout: StageLayout): string {
-  // Total trailer = 50s. Windows touch/overlap so no gap falls through to the
-  // ACT_1 default (which would re-show the IndexError line).
-  if (t >= 42.3) return renderTerminal(PUSH_SCENE, t - 42.3, theme, layout, 28)
-  if (t >= 32.2 && t < 42.5) return renderTerminal(ACT_3, t - 32.2, theme, layout, 30)
-  if (t >= 27.9 && t < 32.4) return renderQuote(['Something', 'must unite', 'these worlds.'], t - 27.9, 4.5, theme, layout)
-  if (t >= 17.5 && t < 28.1) return renderTerminal(ACT_2, t - 17.5, theme, layout, 26)
-  if (t >= 13.2 && t < 17.7) return renderQuote(['Something', 'is missing', 'from the agent.'], t - 13.2, 4.5, theme, layout)
-  if (t < 13.2) return renderTerminal(ACT_1, t, theme, layout, 28)
+  // Logical timeline ≈ 42s (compressed to TRAILER_DURATION wall-clock seconds
+  // by the TIME_SCALE factor in tick()). Windows touch/overlap so no gap falls
+  // through to the ACT_1 default (which would re-show the IndexError line).
+  if (t >= 35.4) return renderTerminal(PUSH_SCENE, t - 35.4, theme, layout, 28)
+  if (t >= 27.4 && t < 35.6) return renderTerminal(ACT_3, t - 27.4, theme, layout, 30)
+  if (t >= 24.1 && t < 27.6) return renderQuote(['Something', 'must unite', 'these worlds.'], t - 24.1, 3.5, theme, layout)
+  if (t >= 14.5 && t < 24.3) return renderTerminal(ACT_2, t - 14.5, theme, layout, 26)
+  if (t >= 11.2 && t < 14.7) return renderQuote(['Something', 'is missing', 'from the agent.'], t - 11.2, 3.5, theme, layout)
+  if (t < 11.4) return renderTerminal(ACT_1, t, theme, layout, 28)
   return ''
 }
 
