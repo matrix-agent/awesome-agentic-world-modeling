@@ -19,7 +19,6 @@ Papers are grouped by taxonomy section and listed in reverse chronological order
 - [Benchmarks & Evaluation](#benchmarks--evaluation)
 - [Related Surveys](#related-surveys)
 - [Welcome to Contribute](#welcome-to-contribute)
-- [Citation](#citation)
 
 ## Overview
 
@@ -28,6 +27,20 @@ Papers are grouped by taxonomy section and listed in reverse chronological order
 | **L1 Predictor** | One-step local transition | Prediction accuracy, robustness, identifiability | RSSM, V-JEPA, TD-MPC2 | LLM pred., Othello-WM | ToMnet, BToM | GNN, FNO |
 | **L2 Simulator** | Multi-step rollout respecting governing laws | Long-horizon coherence, intervention sensitivity, constraint consistency | DreamerV3, Sora, Cosmos | WebDreamer, Code2World | Generative Agents, CICERO | GraphCast, NeuralGCM |
 | **L3 Evolver** | Design → Execute → Observe → Reflect with model revision | Active information expansion, autonomous execution, belief revision | AdaptSim, Self-Modeling | AlphaEvolve, FunSearch | Evolving Constitutions, AgentSociety | A-Lab, AI Scientist |
+
+If you find this resource useful, please cite and [![Stars](https://img.shields.io/github/stars/matrix-agent/awesome-agentic-world-modeling?style=social)](https://github.com/matrix-agent/awesome-agentic-world-modeling) the repo:
+
+```bibtex
+@article{chu2026agenticworldmodelingfoundations,
+  title         = {Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond},
+  author        = {Meng Chu and Xuan Billy Zhang and Kevin Qinghong Lin and Lingdong Kong and Jize Zhang and Teng Tu and Weijian Ma and Ziqi Huang and Senqiao Yang and Wei Huang and Yeying Jin and Zhefan Rao and Jinhui Ye and Xinyu Lin and Xichen Zhang and Qisheng Hu and Shuai Yang and Leyang Shen and Wei Chow and Yifei Dong and Fengyi Wu and Quanyu Long and Bin Xia and Shaozuo Yu and Mingkang Zhu and Wenhu Zhang and Jiehui Huang and Haokun Gui and Haoxuan Che and Long Chen and Qifeng Chen and Wenxuan Zhang and Wenya Wang and Xiaojuan Qi and Yang Deng and Yanwei Li and Mike Zheng Shou and Zhi-Qi Cheng and See-Kiong Ng and Ziwei Liu and Philip Torr and Jiaya Jia},
+  year          = {2026},
+  eprint        = {2604.22748},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2604.22748}
+}
+```
 
 ## L1: Predictor
 
@@ -273,22 +286,6 @@ The GitHub Action parses the block, inserts the entry in reverse chronological o
 - **`Benchmark`** · subsections `Physical`, `Digital`, `Social`, `Scientific`.
 
 The legacy combined form (`"section": "L2-Digital"`, no subsection) is still accepted but should not be used for new submissions. You can also submit a traditional PR if you prefer.
-
-## Citation
-
-If you find this resource useful, please cite and [![Stars](https://img.shields.io/github/stars/matrix-agent/awesome-agentic-world-modeling?style=social)](https://github.com/matrix-agent/awesome-agentic-world-modeling) the repo:
-
-```bibtex
-@article{chu2026agenticworldmodelingfoundations,
-  title         = {Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond},
-  author        = {Meng Chu and Xuan Billy Zhang and Kevin Qinghong Lin and Lingdong Kong and Jize Zhang and Teng Tu and Weijian Ma and Ziqi Huang and Senqiao Yang and Wei Huang and Yeying Jin and Zhefan Rao and Jinhui Ye and Xinyu Lin and Xichen Zhang and Qisheng Hu and Shuai Yang and Leyang Shen and Wei Chow and Yifei Dong and Fengyi Wu and Quanyu Long and Bin Xia and Shaozuo Yu and Mingkang Zhu and Wenhu Zhang and Jiehui Huang and Haokun Gui and Haoxuan Che and Long Chen and Qifeng Chen and Wenxuan Zhang and Wenya Wang and Xiaojuan Qi and Yang Deng and Yanwei Li and Mike Zheng Shou and Zhi-Qi Cheng and See-Kiong Ng and Ziwei Liu and Philip Torr and Jiaya Jia},
-  year          = {2026},
-  eprint        = {2604.22748},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.AI},
-  url           = {https://arxiv.org/abs/2604.22748}
-}
-```
 
 ## Star History
 
