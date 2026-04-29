@@ -4,25 +4,27 @@
 
 # Awesome Agentic World Modeling
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![arXiv](https://img.shields.io/badge/arXiv-2604.22748-b31b1b)](https://arxiv.org/abs/2604.22748) [![HF #1 Paper of the Day](https://img.shields.io/badge/%F0%9F%A4%97%20HF-%231%20Paper%20of%20the%20Day-FFD21E)](https://huggingface.co/papers/2604.22748) [![Website](https://img.shields.io/badge/Website-agentic--world--modeling.xyz-1f6feb?logo=googlechrome&logoColor=white)](https://agentic-world-modeling.xyz/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) <!-- omit in toc -->
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![arXiv](https://img.shields.io/badge/arXiv-2604.22748-b31b1b)](https://arxiv.org/abs/2604.22748) [![Website](https://img.shields.io/badge/Website-agentic--world--modeling.xyz-1f6feb?logo=googlechrome&logoColor=white)](https://agentic-world-modeling.xyz/) [![HF #1 Paper of the Day](https://img.shields.io/badge/%F0%9F%A4%97%20HF-%231%20Paper%20of%20the%20Day-FFD21E)](https://huggingface.co/papers/2604.22748) [![@_akhaliq](https://img.shields.io/badge/%40__akhaliq-6366F1?logo=x&logoColor=white&labelColor=000000)](https://x.com/_akhaliq/status/2048805921485148284) [![@dotey](https://img.shields.io/badge/%40dotey-6366F1?logo=x&logoColor=white&labelColor=000000)](https://x.com/dotey/status/2049187740084731991) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) <!-- omit in toc -->
 
-This repository accompanies the [**Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond**](https://arxiv.org/abs/2604.22748), providing a taxonomy-aligned bibliography of **400+** cited works and **100+** representative systems. Check out the poster [here](public/poster.png).
+This repository accompanies the [**Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond**](https://arxiv.org/abs/2604.22748), providing a taxonomy-aligned bibliography of **400+** cited works and **100+** representative systems. Papers are grouped by taxonomy section and listed in reverse chronological order within each subsection to support literature navigation, comparison, and ongoing updates. Check out our poster [here](public/poster.png).
 
-Papers are grouped by taxonomy section and listed in reverse chronological order within each subsection to support literature navigation, comparison, and ongoing updates. 
+> [!TIP]
+> 👋 Welcome to join the discussion on [![Discord](https://img.shields.io/badge/Discord-Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/NEAkmhPxqm) or [![WeChat](https://img.shields.io/badge/WeChat-Group-07C160?logo=wechat&logoColor=white)](public/wechat-group.jpg), share your work in progress, and help us grow the agentic world modeling community together.
 
-If you find this resource useful, please cite and [![Stars](https://img.shields.io/github/stars/matrix-agent/awesome-agentic-world-modeling?style=social)](https://github.com/matrix-agent/awesome-agentic-world-modeling) the repo:
-
-```bibtex
-@article{chu2026agenticworldmodelingfoundations,
-  title         = {Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond},
-  author        = {Meng Chu and Xuan Billy Zhang and Kevin Qinghong Lin and Lingdong Kong and Jize Zhang and Teng Tu and Weijian Ma and Ziqi Huang and Senqiao Yang and Wei Huang and Yeying Jin and Zhefan Rao and Jinhui Ye and Xinyu Lin and Xichen Zhang and Qisheng Hu and Shuai Yang and Leyang Shen and Wei Chow and Yifei Dong and Fengyi Wu and Quanyu Long and Bin Xia and Shaozuo Yu and Mingkang Zhu and Wenhu Zhang and Jiehui Huang and Haokun Gui and Haoxuan Che and Long Chen and Qifeng Chen and Wenxuan Zhang and Wenya Wang and Xiaojuan Qi and Yang Deng and Yanwei Li and Mike Zheng Shou and Zhi-Qi Cheng and See-Kiong Ng and Ziwei Liu and Philip Torr and Jiaya Jia},
-  year          = {2026},
-  eprint        = {2604.22748},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.AI},
-  url           = {https://arxiv.org/abs/2604.22748}
-}
-```
+> [!NOTE]
+> 📚 If you find this resource useful, please cite and [![Stars](https://img.shields.io/github/stars/matrix-agent/awesome-agentic-world-modeling?style=social)](https://github.com/matrix-agent/awesome-agentic-world-modeling) the repo:
+>
+> ```bibtex
+> @article{chu2026agenticworldmodelingfoundations,
+>   title         = {Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond},
+>   author        = {Meng Chu and Xuan Billy Zhang and Kevin Qinghong Lin and Lingdong Kong and Jize Zhang and Teng Tu and Weijian Ma and Ziqi Huang and Senqiao Yang and Wei Huang and Yeying Jin and Zhefan Rao and Jinhui Ye and Xinyu Lin and Xichen Zhang and Qisheng Hu and Shuai Yang and Leyang Shen and Wei Chow and Yifei Dong and Fengyi Wu and Quanyu Long and Bin Xia and Shaozuo Yu and Mingkang Zhu and Wenhu Zhang and Jiehui Huang and Haokun Gui and Haoxuan Che and Long Chen and Qifeng Chen and Wenxuan Zhang and Wenya Wang and Xiaojuan Qi and Yang Deng and Yanwei Li and Mike Zheng Shou and Zhi-Qi Cheng and See-Kiong Ng and Ziwei Liu and Philip Torr and Jiaya Jia},
+>   year          = {2026},
+>   eprint        = {2604.22748},
+>   archivePrefix = {arXiv},
+>   primaryClass  = {cs.AI},
+>   url           = {https://arxiv.org/abs/2604.22748}
+> }
+> ```
 
 ## Table of Contents <!-- omit in toc -->
 
