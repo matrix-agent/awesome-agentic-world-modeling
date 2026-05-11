@@ -10,6 +10,8 @@ This repository accompanies the [**Agentic World Modeling: Foundations, Capabili
 
 > [!TIP]
 > 👋 Welcome to join the discussion on [![Discord](https://img.shields.io/badge/Discord-Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/NEAkmhPxqm) or [![WeChat](https://img.shields.io/badge/WeChat-Group-07C160?logo=wechat&logoColor=white)](public/wechat-group.jpg), share your work in progress, and help us grow the agentic world modeling community together.
+> 
+> We also welcome collaborations on distilled surveys, follow-up research, and related projects across the physical, digital, social, and scientific world modeling.
 
 > [!NOTE]
 > 📚 If you find this resource useful, please cite and [![Stars](https://img.shields.io/github/stars/matrix-agent/awesome-agentic-world-modeling?style=social)](https://github.com/matrix-agent/awesome-agentic-world-modeling) the repo:
@@ -131,7 +133,7 @@ Systems composing operators into multi-step rollouts satisfying governing laws.
 + [**gWorld**](https://arxiv.org/abs/2602.01576) (arXiv, 2026) — VLM code rendering for web simulation. [![Stars](https://img.shields.io/github/stars/trillion-labs/gWorld?style=flat&logo=github&color=181717)](https://github.com/trillion-labs/gWorld)
 + [**WebWorld**](https://arxiv.org/abs/2602.14721) (arXiv, 2026) — Fine-tuned VLM web simulator.
 + [**MobileDreamer**](https://arxiv.org/abs/2601.04035) (arXiv, 2026) — LLM GUI sketch prediction.
-+ [**SWE-World: Building Software Engineering Agents in Docker-Free Environments**](https://arxiv.org/abs/2602.03419) (arXiv, 2026) — Docker-free simulator for software-engineering agents. [![Stars](https://img.shields.io/github/stars/RUCAIBox/SWE-World?style=flat&logo=github&color=181717)](https://github.com/RUCAIBox/SWE-World)
++ [**SWE-World**](https://arxiv.org/abs/2602.03419) (arXiv, 2026) — Docker-free simulator for software-engineering agents. [![Stars](https://img.shields.io/github/stars/RUCAIBox/SWE-World?style=flat&logo=github&color=181717)](https://github.com/RUCAIBox/SWE-World)
 + [**Word2World**](https://arxiv.org/abs/2512.18832) (arXiv, 2025) — LLM text-based world model evaluation. [![Stars](https://img.shields.io/github/stars/X1AOX1A/Word2World?style=flat&logo=github&color=181717)](https://github.com/X1AOX1A/Word2World)
 + [**NeuralOS**](https://arxiv.org/abs/2507.08800) (arXiv, 2025) — RNN + pixel diffusion for desktop GUI. [![Stars](https://img.shields.io/github/stars/yuntian-group/neural-os?style=flat&logo=github&color=181717)](https://github.com/yuntian-group/neural-os)
 + [**WebSynthesis**](https://arxiv.org/abs/2507.04370) (arXiv, 2025) — LLM + MCTS trajectory synthesis. [![Stars](https://img.shields.io/github/stars/LucusFigoGao/WebSynthesis?style=flat&logo=github&color=181717)](https://github.com/LucusFigoGao/WebSynthesis)
