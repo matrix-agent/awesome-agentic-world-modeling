@@ -247,6 +247,7 @@ Systems closing the **design → execute → observe → reflect** loop to auton
 + [**ScienceWorld**](https://arxiv.org/abs/2203.07540) (EMNLP, 2022) — 30 elementary science experiments. [![Stars](https://img.shields.io/github/stars/allenai/ScienceWorld?style=flat&logo=github&color=181717)](https://github.com/allenai/ScienceWorld)
 
 ## Related Surveys
++ [**Ma et al.**](https://arxiv.org/abs/2605.02900) (arXiv, 2026) — Safety in embodied AI: risks, attacks, and defenses across the stack.
 
 + [**Yue et al.**](https://arxiv.org/abs/2511.08585) (arXiv, 2025) — Visual world model roadmap G1-G4.
 + [**Zhang, P-F et al.**](https://arxiv.org/abs/2511.02097) (arXiv, 2025) — Robotic manipulation world models.
