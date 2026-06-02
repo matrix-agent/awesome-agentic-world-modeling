@@ -1797,6 +1797,7 @@ Benchmarks and evaluation suites for world models, grouped by world.
 + [**What Has a Foundation Model Found? Using Inductive Bias to Probe for World Models**](https://arxiv.org/abs/2507.06952) (ICML, 2025)
 
 ## Related Surveys
++ [**Ma et al.**](https://arxiv.org/abs/2605.02900) (arXiv, 2026) — Safety in embodied AI: risks, attacks, and defenses across the stack.
 
 Surveys, reviews, and roadmaps of world models and closely related areas.
 
