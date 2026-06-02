@@ -1,0 +1,84 @@
+name: "📄 Add a paper / benchmark"
+description: "Suggest a paper or benchmark for the bibliography (README + Notion)."
+title: "[Paper] "
+labels: ["paper-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Just give us the **arXiv link**, the **Category**, and the **Law** — the bot fetches everything else
+        (title, authors, venue, year, abstract, code link) from arXiv and adds the paper to the
+        [README](https://github.com/matrix-agent/awesome-agentic-world-modeling#readme) (as a PR for review) and the
+        [Notion database](https://agentic-world-modeling.notion.site).
+  - type: input
+    id: arxiv-url
+    attributes:
+      label: arXiv URL
+      description: "Canonical arXiv abstract link."
+      placeholder: "https://arxiv.org/abs/2601.00001"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: "Taxonomy capability level (tag at the highest level the work qualifies for)."
+      options:
+        - L1 Predictor
+        - L2 Simulator
+        - L3 Evolver
+        - Survey
+        - Benchmark
+    validations:
+      required: true
+  - type: dropdown
+    id: law
+    attributes:
+      label: Law
+      description: "Which world the model operates in. (For a Survey, pick the closest primary world.)"
+      options:
+        - Physical
+        - Digital
+        - Social
+        - Scientific
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Optional overrides** — these mirror the [Notion database](https://agentic-world-modeling.notion.site) columns.
+        Only fill them if the auto-fetched value would be wrong (or, for Institutions, if you know it — arXiv doesn't expose affiliations). Otherwise leave blank.
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: "Optional — Notion `Name`. Auto-filled from arXiv if blank."
+  - type: input
+    id: authors
+    attributes:
+      label: Authors
+      description: "Optional — Notion `Authors`. Comma-separated; auto-filled from arXiv if blank."
+      placeholder: "Jane Doe, John Roe"
+  - type: input
+    id: institutions
+    attributes:
+      label: Institutions
+      description: "Optional — Notion `Institutions`. Comma-separated; NOT available from arXiv, so add it here if you know it."
+      placeholder: "Stanford University, Google"
+  - type: input
+    id: venue
+    attributes:
+      label: Venue
+      description: "Optional — Notion `Venue`. e.g. arXiv, NeurIPS, TMLR (auto-filled if blank)."
+  - type: input
+    id: year
+    attributes:
+      label: Year
+      description: "Optional — Notion `Year`. Auto-filled from arXiv if blank."
+  - type: input
+    id: code-url
+    attributes:
+      label: Code URL
+      description: "Optional — Notion `GitHub`. Auto-detected from the paper when possible; renders a stars badge in the README."
+      placeholder: "https://github.com/org/repo"

@@ -1,0 +1,80 @@
+name: Notion Sync
+
+# When an Awesome Paper Agent PR is merged, mirror the paper into the Notion
+# "Papers" database (deduped). Requires repo secret NOTION_TOKEN (an internal
+# Notion integration shared with the database). NOTION_DATABASE_ID is optional
+# (defaults to the Papers database id in scripts/notion-sync.cjs).
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'paper-agent/')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync merged paper(s) to Notion
+        uses: actions/github-script@v7
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        with:
+          script: |
+            const paperAgent = require('./scripts/paper-agent.cjs');
+            const notion = require('./scripts/notion-sync.cjs');
+
+            const token = process.env.NOTION_TOKEN;
+            if (!token) {
+              core.warning('NOTION_TOKEN secret is not set — skipping Notion sync.');
+              return;
+            }
+
+            // The README PR branch is paper-agent/issue-N and its body says "Closes #N".
+            const ref = process.env.HEAD_REF || '';
+            const body = process.env.PR_BODY || '';
+            const issueNumber =
+              Number((ref.match(/issue-(\d+)/) || [])[1]) ||
+              Number((body.match(/Closes #(\d+)/i) || [])[1]);
+            if (!issueNumber) {
+              core.warning('Could not determine the source issue number — skipping.');
+              return;
+            }
+
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+
+            const { submissions, errors } = await paperAgent.collectSubmissions(issue.data.body || '', fetch);
+            if (errors.length) core.warning('Parse warnings: ' + errors.join('; '));
+
+            const results = [];
+            for (const submission of submissions) {
+              if (!submission.section || !submission.paper_url) continue;
+              try {
+                const r = await notion.syncSubmission({
+                  submission,
+                  token,
+                  databaseId: process.env.NOTION_DATABASE_ID || undefined,
+                  fetch,
+                });
+                results.push(`${submission.title || submission.paper_url}: ${r.created ? 'created' : 'skipped (' + r.reason + ')'}`);
+              } catch (error) {
+                results.push(`${submission.paper_url}: ERROR ${error.message}`);
+                core.error(`Notion sync failed for ${submission.paper_url}: ${error.message}`);
+              }
+            }
+            core.notice('Notion sync — ' + (results.join(' | ') || 'no parseable submissions'));
