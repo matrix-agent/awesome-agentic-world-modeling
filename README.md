@@ -1089,6 +1089,7 @@ Methods rolling out multi-step futures that respect governing laws: long-horizon
 + [**Synthetic Video Enhances Physical Fidelity in Video Synthesis**](https://arxiv.org/abs/2503.20822) (arXiv, 2025)
 + [**T3Former: Delta-Triplane Transformers as Occupancy World Models**](https://arxiv.org/abs/2503.07338) (arXiv, 2025)
 + [**TC-IDM: Grounding Video Generation for Executable Zero-shot Robot Motion**](https://arxiv.org/abs/2601.18323) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/wsbaiyi/TC-IDM?style=flat&logo=github&color=181717)](https://github.com/wsbaiyi/TC-IDM)
++ [**Teaching Video Generators to Remember: Eliciting Dynamic Memory for Out-of-Sight State Evolution**](https://arxiv.org/abs/2605.25333) (arXiv, 2026)
 + [**TeleWorld: Towards Dynamic Multimodal Synthesis with a 4D World Model**](https://arxiv.org/abs/2601.00051) (arXiv, 2025)
 + [**Temporal Difference Flows**](https://arxiv.org/abs/2503.09817) (ICML, 2025)
 + [**TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving**](https://arxiv.org/abs/2509.13164) (arXiv, 2025)
