@@ -1812,7 +1812,6 @@ Benchmarks and evaluation suites for world models, grouped by world.
 + [**What Has a Foundation Model Found? Using Inductive Bias to Probe for World Models**](https://arxiv.org/abs/2507.06952) (ICML, 2025)
 
 ## Related Surveys
-+ [**Ma et al.**](https://arxiv.org/abs/2605.02900) (arXiv, 2026) — Safety in embodied AI: risks, attacks, and defenses across the stack.
 
 Surveys, reviews, and roadmaps of world models and closely related areas.
 
@@ -1833,6 +1832,7 @@ Surveys, reviews, and roadmaps of world models and closely related areas.
 + [**Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges**](https://arxiv.org/abs/2603.09086) (arXiv, 2026)
 + [**OpenWorldLib: A Unified Codebase and Definition of Advanced World Models**](https://arxiv.org/abs/2604.04707) (arXiv, 2026)
 + [**Physically Native World Models: A Hamiltonian Perspective on Generative World Modeling**](https://arxiv.org/abs/2605.00412) (arXiv, 2026)
++ [**Safety in Embodied AI: A Survey of Risks, Attacks, and Defenses**](https://arxiv.org/abs/2605.02900) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/x-zheng16/Awesome-Embodied-AI-Safety?style=flat&logo=github&color=181717)](https://github.com/x-zheng16/Awesome-Embodied-AI-Safety)
 + [**The Trinity of Consistency as a Defining Principle for General World Models**](https://arxiv.org/abs/2602.23152) (arXiv, 2026)
 + [**Toward World Models for Epidemiology**](https://arxiv.org/abs/2604.09519) (arXiv, 2026)
 + [**Towards Interactive Video World Modeling: Frontiers, Challenges, Benchmarks, and Future Trends**](https://arxiv.org/abs/2606.01164) (arXiv, 2026)
