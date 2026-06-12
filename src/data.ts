@@ -52,13 +52,13 @@ export const AUTHORS: Author[] = [
   { name: 'Chengzu Li', aff: [11] },
   { name: 'Dong Huang', aff: [2] },
   { name: 'Rui Liu', aff: [5] },
-  { name: 'Haoxuan Che', aff: [12], senior: true },
+  { name: 'Haoxuan Che', aff: [1], senior: true },
   { name: 'Long Chen', aff: [1], senior: true },
   { name: 'Qifeng Chen', aff: [1], senior: true },
   { name: 'Wenya Wang', aff: [4], senior: true },
-  { name: 'Wenxuan Zhang', aff: [13], senior: true },
+  { name: 'Wenxuan Zhang', aff: [12], senior: true },
   { name: 'Xiaojuan Qi', aff: [6], senior: true },
-  { name: 'Yang Deng', aff: [14], senior: true },
+  { name: 'Yang Deng', aff: [13], senior: true },
   { name: 'Yanwei Li', aff: [5], senior: true },
   { name: 'Mike Zheng Shou', aff: [2], senior: true },
   { name: 'Zhi-Qi Cheng', aff: [7], senior: true },
@@ -80,9 +80,8 @@ export const AFFILIATIONS: Record<number, string> = {
   9: 'Carnegie Mellon University',
   10: 'University of California, Berkeley',
   11: 'University of Cambridge',
-  12: 'XGEN Labs',
-  13: 'Singapore University of Technology and Design',
-  14: 'Singapore Management University',
+  12: 'Singapore University of Technology and Design',
+  13: 'Singapore Management University',
 }
 
 export const STATS = [
