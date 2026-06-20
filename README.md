@@ -1772,6 +1772,7 @@ Benchmarks and evaluation suites for world models, grouped by world.
 + [**RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots**](https://arxiv.org/abs/2603.04356) (arXiv, 2026)
 + [**RoboTrustBench: Benchmarking the Trustworthiness of Video World Models for Robotic Manipulation**](https://arxiv.org/abs/2606.01600) (arXiv, 2026)
 + [**RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation**](https://arxiv.org/abs/2604.19092) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/fffstrong/RoboWM-Bench?style=flat&logo=github&color=181717)](https://github.com/fffstrong/RoboWM-Bench)
++ [**SC3-Eval: Evaluating Robot Foundation Models via Self-Consistent Video Generation**](https://arxiv.org/abs/2606.18610) (arXiv, 2026)
 + [**Sekai: A Video Dataset towards World Exploration**](https://arxiv.org/abs/2506.15675) (arXiv, 2025)
 + [**SimWorld: A Unified Benchmark for Simulator-Conditioned Scene Generation via World Model**](https://arxiv.org/abs/2503.13952) (IEEE/RJS International Conference on Intelligent RObots and Systems, 2025) [![Stars](https://img.shields.io/github/stars/Li-Zn-H/SimWorld?style=flat&logo=github&color=181717)](https://github.com/Li-Zn-H/SimWorld)
 + [**stable-worldmodel: A Platform for Reproducible World Modeling Research and Evaluation**](https://arxiv.org/abs/2605.21800) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/galilai-group/stable-worldmodel?style=flat&logo=github&color=181717)](https://github.com/galilai-group/stable-worldmodel)
