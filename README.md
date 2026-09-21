@@ -826,7 +826,7 @@ Methods rolling out multi-step futures that respect governing laws: long-horizon
 + [**DriveLaW:Unifying Planning and Video Generation in a Latent Driving World**](https://arxiv.org/abs/2512.23421) (arXiv, 2025)
 + [**Driver-WM: A Driver-Centric Traffic-Conditioned Latent World Model for In-Cabin Dynamics Rollout**](https://arxiv.org/abs/2605.05092) (arXiv, 2026)
 + [**DriVerse: Navigation World Model for Driving Simulation via Multimodal Trajectory Prompting and Motion Alignment**](https://arxiv.org/abs/2504.18576) (ACM Multimedia, 2025)
-+ [**DriveVA: Video Action Models are Zero-Shot Drivers**](https://arxiv.org/abs/2604.04198) (arXiv, 2026)
++ [**DriveVA: Video Action Models are Zero-Shot Drivers**](https://link.springer.com/chapter/10.1007/978-3-032-37718-0_19) (ECCV, 2026) [![Stars](https://img.shields.io/github/stars/xiaomi-mlab/DriveVA?style=flat&logo=github&color=181717)](https://github.com/xiaomi-mlab/DriveVA)
 + [**DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving**](https://arxiv.org/abs/2510.12796) (arXiv, 2025) [![Stars](https://img.shields.io/github/stars/BraveGroup/DriveVLA-W0?style=flat&logo=github&color=181717)](https://github.com/BraveGroup/DriveVLA-W0)
 + [**DriveWAM: Video Generative Priors Enable Scalable World-Action Modeling for Autonomous Driving**](https://arxiv.org/abs/2605.28544) (arXiv, 2026)
 + [**DriveWorld-VLA: Unified Latent-Space World Modeling with Vision-Language-Action for Autonomous Driving**](https://arxiv.org/abs/2602.06521) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/liulin815/DriveWorld-VLA.git?style=flat&logo=github&color=181717)](https://github.com/liulin815/DriveWorld-VLA.git)
