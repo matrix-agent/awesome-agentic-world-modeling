@@ -675,6 +675,7 @@ Methods rolling out multi-step futures that respect governing laws: long-horizon
 
 ### Physical World
 
++ [**UNITAS: A 3D-Native World Action Model for Embodied Manipulation**](http://arxiv.org/abs/2610.12099) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/DexForce/UNITAS?style=flat&logo=github&color=181717)](http://github.com/DexForce/UNITAS) [![Homepage](https://img.shields.io/badge/Homepage-Online-1f6feb?logo=googlechrome&logoColor=white)](http://unitas-wam.github.io/)
 + [**τ_0-WM: A Unified Video-Action World Model for Robotic Manipulation**](https://arxiv.org/abs/2606.01027) (arXiv, 2026)
 + [**3D-Belief: Embodied Belief Inference via Generative 3D World Modeling**](https://arxiv.org/abs/2605.11367) (arXiv, 2026)
 + [**3D-VLA: A 3D Vision-Language-Action Generative World Model**](https://arxiv.org/abs/2403.09631) (ICML, 2024)
