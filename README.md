@@ -2316,6 +2316,7 @@ Surveys, reviews, and roadmaps of world models and closely related areas.
 + [**Toward World Models for Epidemiology**](https://arxiv.org/abs/2604.09519) (arXiv, 2026)
 + [**Towards Interactive Video World Modeling: Frontiers, Challenges, Benchmarks, and Future Trends**](https://arxiv.org/abs/2606.01164) (arXiv, 2026)
 + [**Towards World Models in Biomedical Research**](https://arxiv.org/abs/2606.05925) (arXiv, 2026)
++ [**Video Generation Meets Agent Harness: Agentic Video Generation, Agentic World Modeling and Recursive Self-Improvement**](https://arxiv.org/abs/2610.40191) (arXiv, 2026) · [Resources](https://github.com/agentic-videogen/awesome-agentic-videogen) · [Project](https://agentic-videogen.github.io/)
 + [**Video Generation Models as World Models: Efficient Paradigms, Architectures and Algorithms**](https://arxiv.org/abs/2603.28489) (arXiv, 2026)
 + [**Visual Generation in the New Era: An Evolution from Atomic Mapping to Agentic World Modeling**](https://arxiv.org/abs/2604.28185) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/EvolvingLMMs-Lab/Evolving-Visual-Generation?style=flat&logo=github&color=181717)](https://github.com/EvolvingLMMs-Lab/Evolving-Visual-Generation)
 + [**Visual Generation Unlocks Human-Like Reasoning through Multimodal World Models**](https://arxiv.org/abs/2601.19834) (arXiv, 2026)
