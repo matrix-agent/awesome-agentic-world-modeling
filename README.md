@@ -56,6 +56,7 @@ Methods learning local one-step operators: state inference, forward dynamics, ob
 
 ### Physical World
 
++ [**Few-Shot Residual Adaptation of Pretrained Latent World Models**](https://arxiv.org/abs/2611.13592) (arXiv, 2026)
 + [**Keeping JEPA World Models Plannable When Little of the Frame Moves**](https://arxiv.org/abs/2610.03137) (arXiv, 2026)
 + [**ω-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation**](https://arxiv.org/abs/2608.06375) (arXiv, 2026)
 + [**3D Point World Models: Point Completion Enables More Accurate Dynamics Learning**](https://arxiv.org/abs/2607.00148) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/pvskand/3dpwm?style=flat&logo=github&color=181717)](https://github.com/pvskand/3dpwm)
@@ -677,6 +678,8 @@ Methods rolling out multi-step futures that respect governing laws: long-horizon
 
 ### Physical World
 
++ [**Σ-LeWM: Learning World Models via S-Information for Robot Control**](https://arxiv.org/abs/2611.12732) (arXiv, 2026) · [Code](https://github.com/zuxinrui/sigma-lewm) · [Project](https://zuxinrui.github.io/sigma-lewm/)
++ [**Fast Inference-Time Policy Refinement via Action-Affine World Models**](https://arxiv.org/abs/2611.15011) (arXiv, 2026)
 + [**Back on Track: Deployment-time Policy Improvement via World Model Planning**](https://arxiv.org/abs/2610.19579) (arXiv, 2026)
 + [**How Much Planning Is Enough? Reducing Search and Computation in World-Model Planning**](https://arxiv.org/abs/2610.08350) (arXiv, 2026)
 + [**τ_0-WM: A Unified Video-Action World Model for Robotic Manipulation**](https://arxiv.org/abs/2606.01027) (arXiv, 2026)
@@ -2024,6 +2027,7 @@ Benchmarks and evaluation suites for world models, grouped by world.
 
 ### Physical
 
++ [**Does Your World Model Know Actions Have Consequences?**](https://arxiv.org/abs/2611.15048) (arXiv, 2026)
 + [**4DWorldBench: A Comprehensive Evaluation Framework for 3D/4D World Generation Models**](https://arxiv.org/abs/2511.19836) (arXiv, 2025)
 + [**A Control-Centric Benchmark for Video Prediction**](https://arxiv.org/abs/2304.13723) (arXiv, 2023)
 + [**A Physics-Grounded Benchmark for Multi-Agent Dynamics in World Models**](https://arxiv.org/abs/2606.28757) (arXiv, 2026)
