@@ -2053,7 +2053,7 @@ Benchmarks and evaluation suites for world models, grouped by world.
 + [**CoPhy: Counterfactual Learning of Physical Dynamics**](https://arxiv.org/abs/1909.12000) (ICLR, 2020)
 + [**CRONOS: Benchmarking Counterfactual Physical Consistency in Video Models**](https://arxiv.org/abs/2605.23699) (arXiv, 2026)
 + [**Current Agents Fail to Leverage World Model as Tool for Foresight**](https://arxiv.org/abs/2601.03905) (arXiv, 2026)
-+ [**Current World Models Lack a Persistent State Core**](https://arxiv.org/abs/2606.20545) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/JinPLu/WRBench?style=flat&logo=github&color=181717)](https://github.com/JinPLu/WRBench)
++ [**Current World Models Lack a Persistent State Core**](https://arxiv.org/abs/2606.20545) (arXiv, 2026) [![Stars](https://img.shields.io/github/stars/JinPLu/WRBench?style=flat&logo=github&color=181717)](https://github.com/JinPLu/WRBench) [Project](https://jinplu.github.io/WRBench/) · [Data](https://huggingface.co/collections/WRBench/wrbench-current-world-models-lack-a-persistent-state-core)
 + [**DeepMind Control Suite**](https://arxiv.org/abs/1801.00690) (arXiv, 2018) [![Stars](https://img.shields.io/github/stars/deepmind/dm_control?style=flat&logo=github&color=181717)](https://github.com/deepmind/dm_control)
 + [**Deform360: A Massive Multi-view Visuotactile Dataset for Deformable World Models**](https://arxiv.org/abs/2607.05390) (ECCV, 2026)
 + [**Diagnosing JEPA World Models with Action-Conditioned Predictive Consistency**](https://arxiv.org/abs/2608.12939) (arXiv, 2026)
